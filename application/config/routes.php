@@ -1,0 +1,87 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+/*
+| -------------------------------------------------------------------------
+| URI ROUTING
+| -------------------------------------------------------------------------
+| This file lets you re-map URI requests to specific controller functions.
+|
+| Typically there is a one-to-one relationship between a URL string
+| and its corresponding controller class/method. The segments in a
+| URL normally follow this pattern:
+|
+|	example.com/class/method/id/
+|
+| In some instances, however, you may want to remap this relationship
+| so that a different class/function is called than the one
+| corresponding to the URL.
+|
+| Please see the user guide for complete details:
+|
+|	https://codeigniter.com/user_guide/general/routing.html
+|
+| -------------------------------------------------------------------------
+| RESERVED ROUTES
+| -------------------------------------------------------------------------
+|
+| There are three reserved routes:
+|
+|	$route['default_controller'] = 'welcome';
+|
+| This route indicates which controller class should be loaded if the
+| URI contains no data. In the above example, the "welcome" class
+| would be loaded.
+|
+|	$route['404_override'] = 'errors/page_missing';
+|
+| This route will tell the Router which controller/method to use if those
+| provided in the URL cannot be matched to a valid route.
+|
+|	$route['translate_uri_dashes'] = FALSE;
+|
+| This is not exactly a route, but allows you to automatically route
+| controller and method names that contain dashes. '-' isn't a valid
+| class or method name character, so it requires translation.
+| When you set this option to TRUE, it will replace ALL dashes in the
+| controller and method URI segments.
+|
+| Examples:	my-controller/index	-> my_controller/index
+|		my-controller/my-method	-> my_controller/my_method
+*/
+$route['default_controller'] = 'dashboard';
+$route['404_override'] = '';
+$route['translate_uri_dashes'] = FALSE;
+
+/*Login*/
+$route['login'] = "usersop/login";
+$route['logout'] = "usersop/logout";
+$route['lockscreen'] = "usersop/lockscreen";
+$route['forget_password'] = "usersop/forget_password";
+$route['reset_password'] = "usersop/reset_password";
+/*Login*/
+
+/*Accounts*/
+$route['account_types'] = "accounts/account_types";
+$route['account_types/updateType/(:any)'] = "accounts/updateType/$1";
+$route['account_types/editType/(:any)'] = "accounts/editType/$1";
+$route['account_types/typeForm'] = "accounts/typeForm";
+$route['account_types/addType'] = "accounts/addType";
+$route['extract/(:any)'] = "accounts/extract/$1";
+/*Accounts*/
+
+/*Companies*/
+$route['company_types'] = "companies/company_types";
+$route['company_types/updateType/(:any)'] = "companies/updateType/$1";
+$route['company_types/editType/(:any)'] = "companies/editType/$1";
+$route['company_types/typeForm'] = "companies/typeForm";
+$route['company_types/addType'] = "companies/addType";
+/*Companies*/
+
+/*Expense*/
+$route['expense_category'] = "expenses/expense_category";
+/*Expense*/
+
+/*Income*/
+$route['income_category'] = "incomes/income_category";
+/*Income*/

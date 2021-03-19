@@ -1,0 +1,33 @@
+<?php
+
+$settings["title"] ='CodePay Muhasebe';
+$settings["current_language_id"] ='1';
+$settings["currency"] ='₺';
+$settings["money_status"] ='after';
+$settings["footer_text"] ='CodePay Muhasebe';
+$settings["company_name"] ='CodePay Muhasebe';
+$settings["author_name"] ='Azad Furkan ŞAKAR';
+$settings["phone"] ='0555 123 45 67';
+$settings["fax"] ='0555 123 45 67';
+$settings["gsm"] ='0555 123 45 67';
+$settings["email"] ='info@afsakar.com';
+$settings["tax_name"] ='Gökalp V.D.';
+$settings["tax_number"] ='1234567890';
+$settings["address"] ='Ankara/Türkiye';
+$settings["dark_mode"] ='open';
+$settings["table_type"] ='datatable';
+$settings["header_status"] ='fixed';
+$settings["header_style"] ='classic';
+$settings["item"] ='';
+$settings["user_pagination"] ='10';
+$settings["language_pagination"] ='10';
+$settings["email_pagination"] ='10';
+$settings["accounts_pagination"] ='10';
+$settings["accounts_types_pagination"] ='10';
+$settings["customer_pagination"] ='10';
+$settings["supplier_pagination"] ='10';
+$settings["products_pagination"] ='10';
+$settings["services_pagination"] ='10';
+$settings["invoices_pagination"] ='10';
+$settings["bills_pagination"] ='10';
+$settings["example_pagination"] ='10';

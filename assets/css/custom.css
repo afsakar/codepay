@@ -1,0 +1,11 @@
+.pages a {
+    font-size: 1rem;
+    line-height: 16px;
+    padding: .357143rem .5rem;
+    position: relative;
+    display: block;
+    margin-left: -1px;
+    color: #171717;
+    background-color: #f0f2f5;
+    border: 1px solid #f0f2f5;
+}
