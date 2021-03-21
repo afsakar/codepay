@@ -248,7 +248,6 @@ class Accounts extends CI_Controller
 
             $update = $this->accounts_model->update(array("acc_id" => $id), $data);
 
-            // TODO Alert sistemi eklenecek...
             if ($update) {
 
                 $alert = array(
@@ -357,43 +356,10 @@ class Accounts extends CI_Controller
 
         $viewData = new stdClass();
 
-        /* Pagination Start */
-        $config["base_url"] = base_url("accounts/account_types");
-        $config["total_rows"] = $this->accounts_type_model->get_count();
-        $config["uri_segment"] = 3;
-        $config["per_page"] = settings("accounts_types_pagination");
-        $config["num_links"] = 2;
-
-        $config['full_tag_open'] = "<nav aria-label='Page navigation'> <ul class='pagination pagination-sm'>";
-        $config['full_tag_close'] = '</ul></nav>';
-        $config['num_tag_open'] = '<li class="page-item pages">';
-        $config['num_tag_close'] = '</li>';
-        $config['cur_tag_open'] = '<li class="page-item active"><a class="page-link" href="#">';
-        $config['cur_tag_close'] = '</a></li>';
-        $config['prev_tag_open'] = '<li class="page-item pages">';
-        $config['prev_tag_close'] = '</li>';
-        $config['first_tag_open'] = '<li class="page-item pages">';
-        $config['first_tag_close'] = '</li>';
-        $config['last_tag_open'] = '<li class="page-item pages">';
-        $config['last_tag_close'] = '</li>';
-        $config['prev_link'] = '<i class="fa fa fa-angle-left"></i>';
-        $config['prev_tag_open'] = '<li class="page-item pages">';
-        $config['prev_tag_close'] = '</li>';
-        $config['next_link'] = '<i class="fa fa-angle-right"></i>';
-        $config['next_tag_open'] = '<li class="page-item pages">';
-        $config['next_tag_close'] = '</li>';
-
-        $this->pagination->initialize($config);
-        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $viewData->links = $this->pagination->create_links();
-        /* Pagination End */
-
         //Tablodan verilerin çekilmesi.
-        $items = $this->accounts_type_model->get_records(
+        $items = $this->accounts_type_model->getAll(
             array(),
-            "rank ASC",
-            $config["per_page"],
-            $page
+            "rank ASC"
         );
 
         //View'e gönderilen verilerin set edilmesi.
@@ -577,7 +543,6 @@ class Accounts extends CI_Controller
 
             $update = $this->accounts_type_model->update(array("act_id" => $id), $data);
 
-            // TODO Alert sistemi eklenecek...
             if ($update) {
 
                 $alert = array(

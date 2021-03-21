@@ -310,7 +310,6 @@ class Suppliers extends CI_Controller
 
             $update = $this->suppliers_model->update(array("sup_id" => $id), $data);
 
-            // TODO Alert sistemi eklenecek...
             if ($update) {
 
                 $alert = array(

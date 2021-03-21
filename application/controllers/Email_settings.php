@@ -222,7 +222,6 @@ class Email_settings extends CI_Controller
 
             $update = $this->email_settings_model->update(array("id" => $id), $data);
 
-            // TODO Alert sistemi eklenecek...
             if ($update) {
                 $alert = array(
                     "title" => trans("has_success"),

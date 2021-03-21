@@ -168,7 +168,7 @@
                                 ?>
                             </td>
                         </tr>
-                        <input type="hidden" class="form-control-plaintext text-center bill_total" id="bill_total" name="bill_total" value="" readonly>
+                        <input type="hidden" class="form-control-plaintext text-center bill_total" id="bill_total" name="bill_total" value="<?=$item->bill_total?>" readonly>
                         </tfoot>
                     </table>
                 </div>

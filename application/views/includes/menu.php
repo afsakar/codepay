@@ -12,6 +12,17 @@ $menus = [
 
     ],
     [
+        "url" => "calendar",
+        "title" => trans("calendar"),
+        "icon" => "si si-calendar",
+        "permissions" => [
+            "show" => trans("show"),
+            "edit" => trans("edit"),
+            "add" => trans("add"),
+            "delete" => trans("delete")
+        ]
+    ],
+    [
         "url" => "users",
         "title" => trans("users"),
         "icon" => "si si-users",

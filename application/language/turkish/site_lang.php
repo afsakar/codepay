@@ -291,3 +291,4 @@ $lang["amount"] ='Matrah';
 $lang["tax_rate"] ='Vergi Oranı';
 $lang["dont_show_again"] ='Bugünlük gösterme';
 $lang["extract"] ='Ekstre';
+$lang["calendar"] ='Takvim';

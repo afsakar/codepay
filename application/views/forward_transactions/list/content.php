@@ -83,11 +83,6 @@
                         </td>
                         <td class="text-center">
                             <div class="btn-group">
-                                <?php if(permission("forward_transactions", "add")): ?>
-                                <a href="<?php echo base_url("forward_transactions/updateForm/$item->op_id")?>" type="button" class="btn btn-sm btn-secondary">
-                                    <i class="fa fa-check"></i>
-                                </a>
-                                <?php endif; ?>
                                 <?php if(permission("forward_transactions", "delete")): ?>
                                     <button data-url="<?php echo base_url("forward_transactions/deleteItem/$item->op_id")?>"
                                             data-title="<?=trans("delete_title")?>"

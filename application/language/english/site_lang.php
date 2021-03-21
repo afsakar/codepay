@@ -289,3 +289,4 @@ $lang["amount"] ='Base Amount';
 $lang["tax_rate"] ='Tax Rate';
 $lang["dont_show_again"] ='Dont show again for today';
 $lang["extract"] ='Extract';
+$lang["calendar"] ='Calendar';

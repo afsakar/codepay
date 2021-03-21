@@ -1,62 +1,131 @@
 <div class="content">
-    <!-- Calendar and Events functionality is initialized in js/pages/be_comp_calendar.min.js which was auto compiled from _es6/pages/be_comp_calendar.js -->
-    <!-- For more info and examples you can check out https://fullcalendar.io/ -->
-    <div class="block">
-        <div class="block-content">
-            <div class="row items-push">
-                <div class="col-xl-3">
-                    <div class="block-header">
-                        <h5 class="block-title"><?= trans("add_event") ?></h5>
-                    </div>
-                    <!-- Add Event Form -->
-                    <form action="<?= base_url("dashboard/addItem") ?>" method="post">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="<?= trans("add_event") ?>" name="title"
-                                   required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="js-flatpickr form-control bg-white" id="start_date"
-                                   name="start_date" placeholder="<?= trans("start_date") ?>" required
-                                   data-week-start="1" data-autoclose="true" data-today-highlight="true"
-                                   data-date-format="Y/m/d">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="js-flatpickr form-control bg-white" id="end_date" name="end_date"
-                                   placeholder="<?= trans("end_date") ?>" required data-week-start="1"
-                                   data-autoclose="true" data-today-highlight="true" data-date-format="Y/m/d">
-                        </div>
-                        <div class="form-group">
-                            <div class="js-colorpicker input-group" data-format="hex">
-                                <input type="text" class="form-control" id="example-colorpicker2" name="bgColor"
-                                       placeholder="<?= trans("background_color") ?>" required>
-                                <div class="input-group-append">
-                                    <span class="input-group-text colorpicker-input-addon">
-                                        <i></i>
-                                    </span>
-                                </div>
+
+    <div class="row mb-20">
+        <div class="col-12">
+            <div class="row gutters-tiny">
+                <!-- Row #1 -->
+                <div class="col-md-6 col-xl-3">
+                    <a class="block block-link-shadow text-right" href="<?=base_url("accounts")?>">
+                        <div class="block-content block-content-full clearfix">
+                            <div class="float-left mt-10">
+                                <i class="fa fa-money fa-3x text-body-bg-dark"></i>
                             </div>
+                            <div class="font-size-h3 font-w600"><?=getSum($accounts, "acc_balance")?></div>
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">KASA</div>
                         </div>
-                        <div class="form-group">
-                            <div class="js-colorpicker input-group" data-format="hex">
-                                <input type="text" class="form-control" id="example-colorpicker2" name="textColor"
-                                       placeholder="<?= trans("text_color") ?>" required>
-                                <div class="input-group-append">
-                                    <span class="input-group-text colorpicker-input-addon">
-                                        <i></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-alt-primary btn-block"><i
-                                        class="fa fa-save"></i> <?= trans("save") ?></button>
-                        </div>
-                    </form>
-                    <!-- END Add Event Form -->
+                    </a>
                 </div>
-                <div class="col-xl-9 calendarContainer">
-                    <!-- Calendar Container -->
-                    <div id='calendar'></div>
+                <div class="col-md-6 col-xl-3">
+                    <a class="block block-link-shadow text-right" href="javascript:void(0)">
+                        <div class="block-content block-content-full clearfix">
+                            <div class="float-left mt-10">
+                                <i class="si si-wallet fa-3x text-body-bg-dark"></i>
+                            </div>
+                            <div class="font-size-h3 font-w600">
+                                <?php
+
+                                $incomeTotal = "";
+                                $expenseTotal = "";
+
+                                foreach ($dailyIncome as $income) {
+                                    $incomeTotal .= $income->op_price;
+                                }
+
+                                if($incomeTotal != 0){
+                                    $incomeTotal = $incomeTotal;
+                                }else{
+                                    $incomeTotal = 0;
+                                }
+
+                                foreach ($dailyExpense as $expense) {
+                                    $expenseTotal .= $expense->op_price;
+                                }
+
+                                if($expenseTotal != 0){
+                                    $expenseTotal = $expenseTotal;
+                                }else{
+                                    $expenseTotal = 0;
+                                }
+
+                                echo currencyFormat($incomeTotal-$expenseTotal);
+                                ?>
+                            </div>
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">Günlük Kâr-Zarar</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-xl-3">
+                    <a class="block block-link-shadow text-left" href="<?=base_url("products")?>">
+                        <div class="block-content block-content-full clearfix">
+                            <div class="float-right mt-10">
+                                <i class="si si-handbag fa-3x text-body-bg-dark"></i>
+                            </div>
+                            <div class="font-size-h3 font-w600"><?=$products->num_rows()?></div>
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">Ürün</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-xl-3">
+                    <a class="block block-link-shadow text-left"href="<?=base_url("services")?>">
+                        <div class="block-content block-content-full clearfix">
+                            <div class="float-right mt-10">
+                                <i class="si si-wrench fa-3x text-body-bg-dark"></i>
+                            </div>
+                            <div class="font-size-h3 font-w600"><?=$services->num_rows()?></div>
+                            <div class="font-size-sm font-w600 text-uppercase text-muted">Hizmet</div>
+                        </div>
+                    </a>
+                </div>
+                <!-- END Row #1 -->
+            </div>
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="block-header justify-content-end">
+            <h5 class="block-title">Aylık Resmi Gelir-Gider Durumu</h5>
+        </div>
+        <div class="block-content">
+            <div class="row gutters-tiny">
+                <div class="col-md-6">
+                    <a class="block" href="javascript:void(0)">
+                        <div class="block-content block-content-full">
+                            <div class="row py-20 text-center text-success">
+                                <div class="col-6 border-r">
+                                    <div class="font-size-h3 font-w600">
+                                        <?=getSum($invoices, "inv_total")?>
+                                    </div>
+                                    <div class="font-size-sm font-w600 text-uppercase text-muted"><?=trans("invoice_list")?></div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="font-size-h3 font-w600">
+                                        <?=getSum($incomesOff, "op_price")?>
+                                    </div>
+                                    <div class="font-size-sm font-w600 text-uppercase text-muted"><?=trans("income")?></div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a class="block" href="javascript:void(0)">
+                        <div class="block-content block-content-full">
+                            <div class="row py-20 text-center text-danger">
+                                <div class="col-6 border-r">
+                                    <div class="font-size-h3 font-w600">
+                                        <?=getSum($bills, "bill_total")?>
+                                    </div>
+                                    <div class="font-size-sm font-w600 text-uppercase text-muted"><?=trans("bill_list")?></div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="font-size-h3 font-w600">
+                                        <?=getSum($expensesOff, "op_price")?>
+                                    </div>
+                                    <div class="font-size-sm font-w600 text-uppercase text-muted"><?=trans("expense")?></div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -64,8 +133,7 @@
 
     <div class="row">
         <div class="col-12">
-            <div class="block mb-0 bg-pattern"
-                 style="background-image: url('<?= base_url("assets") ?>/media/various/bg-pattern-inverse.png');">
+            <div class="block mb-0">
                 <div class="block-header justify-content-end">
                     <h5 class="block-title">Bugünkü İşlemler</h5>
                 </div>
@@ -137,3 +205,4 @@
             </div>
         </div>
     </div>
+</div>

@@ -4,16 +4,16 @@ function chart($chartName, $title, $type, array $data, $labelColumn, $dataColumn
 {
     echo "<div id='$chartName' style='width: 100%; height: auto'></div>";
     echo "<script type=\"text/javascript\">";
-           echo "google.charts.load('current', {'packages':['corechart']});
+    echo "google.charts.load('current', {'packages':['corechart']});
                 google.charts.setOnLoadCallback(drawChart);
 
                 function drawChart() {
                 var data = google.visualization.arrayToDataTable([
-                    ['".trans("date")."', '".$lineName."'],";
-                    foreach ($data as $item){
-                       echo "['".$item->$labelColumn."',".$item->$dataColumn."],";
-                    }
-                echo "]);
+                    ['" . trans("date") . "', '" . $lineName . "'],";
+    foreach ($data as $item) {
+        echo "['" . $item->$labelColumn . "'," . $item->$dataColumn . "],";
+    }
+    echo "]);
 
                 var options = {
                     title: '$title',
@@ -22,7 +22,7 @@ function chart($chartName, $title, $type, array $data, $labelColumn, $dataColumn
                     legend: { position: 'bottom' }
                 };
 
-                var chart = new google.visualization.".$type."Chart(document.getElementById('$chartName'));
+                var chart = new google.visualization." . $type . "Chart(document.getElementById('$chartName'));
 
                 chart.draw(data, options);
                 }";

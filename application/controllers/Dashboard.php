@@ -24,13 +24,122 @@ class Dashboard extends CI_Controller
     public function index()
     {
         $today = date("Y-m-d");
-        $calendar = $this->db->where("end_date >=", $today)->where("start_date <=", $today)->order_by("")->get("calendar")->result();
+        $firstDay = date("Y/m/d", strtotime("first day of this month"));
+        $lastDay = date("Y/m/d", strtotime("last day of this month"));
+
+        $calendar = $this->db
+            ->where("end_date >=", $today)
+            ->where("start_date <=", $today)
+            ->order_by("")
+            ->get("calendar")
+            ->result();
+
+        //Daily profit-benefit
+        $incomeDaily = $this->db
+            ->select("*")
+            ->where("op_date <=", date("Y/m/d"))
+            ->where("op_date >=", date("Y/m/d"))
+            ->select_sum("op_price")
+            ->get("incomes")
+            ->result();
+
+        $expenseDaily = $this->db
+            ->select("*")
+            ->where("op_date <=", date("Y/m/d"))
+            ->where("op_date >=", date("Y/m/d"))
+            ->select_sum("op_price")
+            ->get("expenses")
+            ->result();
+
+        //Official
+        $incomesOff = $this->db
+            ->select("*")
+            ->where("op_type", "official")
+            ->where("op_date <=", $lastDay)
+            ->where("op_date >=", $firstDay)
+            ->select_sum("op_price")
+            ->get("incomes")
+            ->result();
+
+        $expensesOff = $this->db
+            ->select("*")
+            ->where("op_type", "official")
+            ->where("op_date <=", $lastDay)
+            ->where("op_date >=", $firstDay)
+            ->select_sum("op_price")
+            ->get("expenses")
+            ->result();
+
+        //Bill-Invoice
+        $invoices = $this->db
+            ->select("*")
+            ->where("inv_cre_date <=", $lastDay)
+            ->where("inv_cre_date >=", $firstDay)
+            ->select_sum("inv_total")
+            ->get("invoices")
+            ->result();
+
+        $bills = $this->db
+            ->select("*")
+            ->where("bill_cre_date <=", $lastDay)
+            ->where("bill_cre_date >=", $firstDay)
+            ->select_sum("bill_total")
+            ->get("bills")
+            ->result();
+
+        //Unofficial
+        $incomesUnoff = $this->db
+            ->select("*")
+            ->where("op_type", "unofficial")
+            ->where("op_date <=", $lastDay)
+            ->where("op_date >=", $firstDay)
+            ->select_sum("op_price")
+            ->get("incomes")
+            ->result();
+
+        $expensesUnoff = $this->db
+            ->select("*")
+            ->where("op_type", "unofficial")
+            ->where("op_date <=", $lastDay)
+            ->where("op_date >=", $firstDay)
+            ->select_sum("op_price")
+            ->get("expenses")
+            ->result();
+
+        //Accounts
+        $accounts = $this->db
+            ->select("*")
+            ->where("acc_isActive", 1)
+            ->select_sum("acc_balance")
+            ->get("accounts")
+            ->result();
+
+        //Services
+        $services = $this->db
+            ->select("*")
+            ->where("sr_isActive", 1)
+            ->get("services");
+
+        //Products
+        $products = $this->db
+            ->select("*")
+            ->where("pr_isActive", 1)
+            ->get("products");
 
         /*Start ViewData */
         $viewData = new stdClass();
         $viewData->viewFolder = $this->viewFolder;
         $viewData->title = trans("homepage");
         $viewData->calendar = $calendar;
+        $viewData->incomesOff = $incomesOff;
+        $viewData->expensesOff = $expensesOff;
+        $viewData->invoices = $invoices;
+        $viewData->bills = $bills;
+        $viewData->accounts = $accounts;
+        $viewData->services = $services;
+        $viewData->products = $products;
+        $viewData->dailyIncome = $incomeDaily;
+        $viewData->dailyExpense = $expenseDaily;
 
         $this->load->view("{$viewData->viewFolder}/index", $viewData);
     }
@@ -53,78 +162,5 @@ class Dashboard extends CI_Controller
         redirect($_SERVER['HTTP_REFERER']);
 
         exit;
-    }
-
-    public function addItem()
-    {
-
-        $data["title"] = $this->input->post("title");
-        $data["start_date"] = $this->input->post("start_date");
-        $data["end_date"] = $this->input->post("end_date");
-        $data["textColor"] = $this->input->post("textColor");
-        $data["bgColor"] = $this->input->post("bgColor");
-
-        $insert = $this->calendar_model->add($data);
-
-        if ($insert) {
-            $alert = array(
-                "title" => trans("has_success"),
-                "text" => trans("success_record"),
-                "type" => "success",
-                "position" => "top-center"
-            );
-        } else {
-            $alert = array(
-                "title" => trans("has_error"),
-                "text" => trans("error_record"),
-                "type" => "error",
-                "position" => "top-center"
-            );
-        }
-
-        $this->session->set_flashdata("alert", $alert);
-        redirect(base_url());
-    }
-
-    public function updateItem()
-    {
-        $id = $_POST["id"];
-        $data["title"] = $_POST["title"];
-        $data["start_date"] = $_POST["start"];
-        $data["end_date"] = $_POST["end"];
-
-        $item = $this->calendar_model->get(array("id" => $id));
-
-        if ($item->fw_id != 0) {
-            $oldDate = str_replace("-", "/", $data["start_date"]);
-            $this->forward_transactions_model->update(array("op_description" => $data["title"]), array("op_date" => $oldDate));
-        }
-
-        $update = $this->calendar_model->update(array("id" => $id), $data);
-    }
-
-    public function deleteItem()
-    {
-        $id = $_POST["id"];
-        $title = $_POST["title"];
-        $fw_id = $_POST["fw_id"];
-
-
-        $delete = $this->calendar_model->delete(array("id" => $id));
-        if ($delete) {
-
-            if ($fw_id == 1) {
-                $this->forward_transactions_model->delete(array("op_description" => $title));
-            }
-
-            $alert = array(
-                "title" => trans("has_success"),
-                "text" => trans("success_delete"),
-                "type" => "success",
-                "position" => "top-center"
-            );
-        }
-        $this->session->set_flashdata("alert", $alert);
-        redirect(base_url());
     }
 }

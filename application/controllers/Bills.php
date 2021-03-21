@@ -222,7 +222,6 @@ class Bills extends CI_Controller
 
             $update = $this->bills_model->update(array("bill_id" => $id), $data);
 
-            // TODO Alert sistemi eklenecek...
             if ($update) {
 
                 $alert = array(

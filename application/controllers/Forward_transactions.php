@@ -271,7 +271,6 @@ class Forward_transactions extends CI_Controller
 
             $update = $this->forward_transactions_model->update(array("id" => $id), $data);
 
-            // TODO Alert sistemi eklenecek...
             if ($update) {
 
                 $alert = array(

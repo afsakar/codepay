@@ -248,7 +248,6 @@ class Incomes extends CI_Controller
 
             $update = $this->incomes_model->update(array("op_id" => $id), $data);
 
-            // TODO Alert sistemi eklenecek...
             if ($update) {
 
                 $alert = array(
@@ -585,7 +584,6 @@ class Incomes extends CI_Controller
 
             $update = $this->income_category_model->update(array("inc_id" => $id), $data);
 
-            // TODO Alert sistemi eklenecek...
             if ($update) {
 
                 $alert = array(

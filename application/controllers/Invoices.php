@@ -222,7 +222,6 @@ class Invoices extends CI_Controller
 
             $update = $this->invoices_model->update(array("inv_id" => $id), $data);
 
-            // TODO Alert sistemi eklenecek...
             if ($update) {
 
                 $alert = array(

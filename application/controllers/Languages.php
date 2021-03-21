@@ -219,7 +219,6 @@ class Languages extends CI_Controller
 
             $update = $this->languages_model->update(array("id" => $id), $data);
 
-            // TODO Alert sistemi eklenecek...
             if ($update) {
 
                 //Klasör adı değişikliği

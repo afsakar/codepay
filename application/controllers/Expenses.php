@@ -250,7 +250,6 @@ class Expenses extends CI_Controller
 
             $update = $this->expenses_model->update(array("op_id" => $id), $data);
 
-            // TODO Alert sistemi eklenecek...
             if ($update) {
 
                 $alert = array(
@@ -585,7 +584,6 @@ class Expenses extends CI_Controller
 
             $update = $this->expense_category_model->update(array("exc_id" => $id), $data);
 
-            // TODO Alert sistemi eklenecek...
             if ($update) {
 
                 $alert = array(

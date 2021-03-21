@@ -171,7 +171,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <label><?=trans("dark_mode")?></label>
                                 <select class="js-select2 form-control form-control-lg" id="menubar_mode" name="settings[dark_mode]" style="width: 100%;">
                                     <option value="open" <?php if(isset($form_error) && set_value('settings[dark_mode]') == "open" || settings("dark_mode") == "open"){echo "selected"; }else{ echo ""; } ?>><?=trans("open")?></option>
@@ -179,16 +179,6 @@
                                 </select>
                                 <?php if(isset($form_error)): ?>
                                     <div class="form-text text-danger"><?=form_error('settings[dark_mode]')?></div>
-                                <?php endif; ?>
-                            </div>
-                            <div class="col-md-6">
-                                <label><?=trans("table_type")?></label>
-                                <select class="js-select2 form-control form-control-lg" id="table_type" name="settings[table_type]" style="width: 100%;">
-                                    <option value="datatable" <?php if(isset($form_error) && set_value('settings[table_type]') == "datatable" || settings("table_type") == "datatable"){echo "selected"; }else{ echo ""; } ?>>DataTable</option>
-                                    <option value="normal" <?php if(isset($form_error) && set_value('settings[table_type]') == "normal" || settings("table_type") == "normal"){echo "selected"; }else{ echo ""; } ?>>Normal</option>
-                                </select>
-                                <?php if(isset($form_error)): ?>
-                                    <div class="form-text text-danger"><?=form_error('settings[table_type]')?></div>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -211,15 +201,6 @@
                                 </select>
                                 <?php if(isset($form_error)): ?>
                                     <div class="form-text text-danger"><?=form_error('settings[header_style]')?></div>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-12">
-                                <label>Item</label>
-                                <textarea name="settings[item]" class="js-summernote"><?php if (isset($form_error)){ echo set_value('settings[item]'); }else{ echo settings("item"); } ?></textarea>
-                                <?php if(isset($form_error)): ?>
-                                    <div class="form-text text-danger"><?=form_error('settings[item]')?></div>
                                 <?php endif; ?>
                             </div>
                         </div>

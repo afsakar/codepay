@@ -117,7 +117,6 @@ class Email_templates extends CI_Controller
 
             $update = $this->email_templates_model->update(array("id" => $id), $data);
 
-            // TODO Alert sistemi eklenecek...
             if ($update) {
                 $alert = array(
                     "title" => trans("has_success"),

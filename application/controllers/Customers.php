@@ -310,7 +310,6 @@ class Customers extends CI_Controller
 
             $update = $this->customers_model->update(array("cus_id" => $id), $data);
 
-            // TODO Alert sistemi eklenecek...
             if ($update) {
 
                 $alert = array(

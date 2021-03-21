@@ -225,7 +225,6 @@ class products extends CI_Controller
 
             $update = $this->products_model->update(array("pr_id" => $id), $data);
 
-            // TODO Alert sistemi eklenecek...
             if ($update) {
 
                 $alert = array(

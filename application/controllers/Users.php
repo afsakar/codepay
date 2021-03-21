@@ -300,7 +300,6 @@ class Users extends CI_Controller
 
             $update = $this->users_model->update(array("id" => $id), $data);
 
-            // TODO Alert sistemi eklenecek...
             if ($update) {
                 $alert = array(
                     "title" => trans("has_success"),
@@ -485,7 +484,6 @@ class Users extends CI_Controller
 
             $update = $this->users_model->update(array("id" => $id), $data);
 
-            // TODO Alert sistemi eklenecek...
             if ($update) {
                 $alert = array(
                     "title" => trans("has_success"),
