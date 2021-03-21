@@ -55,7 +55,7 @@ MAIN CONTENT LAYOUT
 <?php if(settings("header_status") == "unfixed"){echo " "; }else{ echo " page-header-fixed "; } ?>
 <?php if(settings("dark_mode") == "open"){echo " sidebar-inverse "; }else{ echo " "; } ?>
 <?php if(settings("dark_mode") == "open" && settings("header_style") == "classic"){echo " page-header-inverse "; }else{ echo " "; } ?>
-main-content-boxed">
+main-content-narrow">
     <!-- Side Overlay-->
 
     <!-- END Side Overlay -->

@@ -16,13 +16,9 @@
                 </div>
             <?php else: ?>
                 <div class="table-responsive">
-                    <?php if(settings("table_type") == "normal"): ?>
-                        <input type="text" id="search" placeholder="<?=trans("search")?>" class="form-control"></input>
-                    <?php endif; ?>
-                    <table class="table table-striped table-vcenter table-hover table-container<?php if(settings("table_type") == "datatable"): ?> js-dataTable-full<?php endif; ?>">
+                    <table class="table table-striped table-vcenter table-hover table-container js-dataTable-full">
                         <thead>
                         <tr>
-                            <th></th>
                             <th class="text-center" style="width: 100px;"><i class="fa fa-hashtag"></i></th>
                             <th><?=trans("email_title")?></th>
                             <th><?=trans("host")?></th>
@@ -36,10 +32,9 @@
                             <th class="text-center" style="width: 100px;"><?=trans("actions")?></th>
                         </tr>
                         </thead>
-                        <tbody class="sortable" data-url="<?php echo base_url("email_settings/rankSetter")?>">
+                        <tbody>
                         <?php foreach ($items as $item): ?>
-                        <tr id="ord-<?=$item->id?>">
-                            <td class="sortableItem"><i class="fa fa-bars"></i></td>
+                        <tr>
                             <td class="text-center">
                                 <?=$item->id?>
                             </td>
@@ -82,9 +77,6 @@
                         <?php endforeach; ?>
                         </tbody>
                     </table>
-                    <?php if(settings("table_type") == "normal"): ?>
-                    <?=$links?>
-                    <?php endif; ?>
                 </div>
             <?php endif; ?>
         </div>
