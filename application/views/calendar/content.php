@@ -9,7 +9,7 @@
                         <h5 class="block-title"><?= trans("add_event") ?></h5>
                     </div>
                     <!-- Add Event Form -->
-                    <form action="<?= base_url("dashboard/addItem") ?>" method="post">
+                    <form action="<?= base_url("calendar/addItem") ?>" method="post">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="<?= trans("add_event") ?>" name="title"
                                    required>

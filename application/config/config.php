@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-date_default_timezone_set('Europe/Istanbul');
 
 /*
 |--------------------------------------------------------------------------
@@ -24,12 +23,7 @@ date_default_timezone_set('Europe/Istanbul');
 | a PHP script and you can easily do that on your own.
 |
 */
-
-$url = (isset($_SERVER['HTTPS']) ? "https://" : "http://");
-
-$url .= $_SERVER['HTTP_HOST']. str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
-
-$config['base_url'] = $url;
+$config['base_url'] = "http://localhost/codepay/";
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +35,7 @@ $config['base_url'] = $url;
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -82,7 +76,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'turkish';
+$config['language']	= 'english';
 
 /*
 |--------------------------------------------------------------------------
@@ -330,7 +324,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'PA_8971934634_SB_TECHVALLey';
 
 /*
 |--------------------------------------------------------------------------

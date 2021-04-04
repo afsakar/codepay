@@ -35,7 +35,7 @@
             var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD");
             var itemID = event.id;
             $.ajax({
-                url: '<?=base_url("dashboard/updateItem")?>',
+                url: '<?=base_url("calendar/updateItem")?>',
                 data: 'title=' + title + '&start=' + start + '&end=' + end + '&id=' + itemID,
                 type: "POST",
                 success: function (response) {
@@ -57,7 +57,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "POST",
-                        url: '<?=base_url("dashboard/deleteItem")?>',
+                        url: '<?=base_url("calendar/deleteItem")?>',
                         data: "&id=" + event.id + "&title=" + event.title + "&fw_id=" +event.fwId,
                         success: function (response) {
                             $('#calendar').fullCalendar('removeEvents', event.id);
@@ -72,33 +72,4 @@
         }
     });
 
-</script>
-<script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
 </script>

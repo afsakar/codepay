@@ -69,7 +69,7 @@ class Calendar extends CI_Controller
     public function updateItem()
     {
         $id = $_POST["id"];
-        $data["title"] = $_POST["title"];
+        $title = $_POST["title"];
         $data["start_date"] = $_POST["start"];
         $data["end_date"] = $_POST["end"];
 
@@ -77,7 +77,7 @@ class Calendar extends CI_Controller
 
         if ($item->fw_id != 0) {
             $oldDate = str_replace("-", "/", $data["start_date"]);
-            $this->forward_transactions_model->update(array("op_description" => $data["title"]), array("op_date" => $oldDate));
+            $this->forward_transactions_model->update(array("op_description" => $title), array("op_date" => $oldDate));
         }
 
         $update = $this->calendar_model->update(array("id" => $id), $data);
