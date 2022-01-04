@@ -10,6 +10,14 @@
 * Notification by popup for upcoming payments / events,
 * Account statements
 
+## Demo
+
+[CodePay](http://codepay.rf.gd/)
+
+Username : superadmin@codepay.com
+
+Password : superadmin
+
 
 ### Features;
 * Adding bank and cash accounts,
@@ -24,4 +32,4 @@
 * Adding more than one language, editing words
 
 ## Licence
-LaraQuiz is open-sourced software licensed under the [MIT license.](https://github.com/afsakar/codepay/blob/main/LICENSE)
+CodePay is open-sourced software licensed under the [MIT license.](https://github.com/afsakar/codepay/blob/main/LICENSE)
